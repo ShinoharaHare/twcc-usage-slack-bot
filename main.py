@@ -52,10 +52,10 @@ def get_formatters(config: Dict[str, Any]) -> List[Callable[[Job], str]]:
     formatters = [
         get_simple_formmatter('🪪 任務ID', 'JOBID'),
         get_simple_formmatter('🛠️ 任務名稱', 'NAME'),
+        get_simple_formmatter('⚓ 分區名稱', 'PARTITION'),
         get_simple_formmatter('🖥️ 節點數量', 'NODES'),
         get_simple_formmatter('⏱ 開始時間', 'START_TIME'),
         get_simple_formmatter('⏳ 運行時間', 'TIME'),
-        get_simple_formmatter('⚓ 分區名稱', 'PARTITION'),
         project_formatter,
         user_formatter,
     ]
