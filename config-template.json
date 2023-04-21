@@ -1,0 +1,12 @@
+{
+    "slack": {
+        "token": "<SLACK_BOT_TOKEN>",
+        "channel": "<SLACK_CHANNEL>"
+    },
+    "project_map": {
+        "GOVXXXXXX": "王小明"
+    },
+    "user_map": {
+        "u12345678": "王小明"
+    }
+}
