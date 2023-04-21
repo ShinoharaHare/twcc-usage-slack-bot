@@ -19,7 +19,7 @@ def build_command(config: Config) -> List[str]:
     account_list = ','.join(config['project_map'].keys())
     return ['squeue', '-a', '-o', '%all', '-A', account_list]
 
-def parse_squeue_output(output: str) -> Job:
+def parse_squeue_output(output: str) -> List[Job]:
     lines = output.strip().split('\n')
     header = lines[0].split('|')
 
@@ -30,7 +30,7 @@ def parse_squeue_output(output: str) -> Job:
     return jobs
 
 def get_formatters(config: Dict[str, Any]) -> List[Callable[[Job], str]]:
-    def get_simple_formmatter(display_name: str, field_name: str):
+    def get_simple_formatter(display_name: str, field_name: str):
         return lambda j: f'{display_name}：{j[field_name]}'
 
     def project_formatter(job: Job):
@@ -50,12 +50,12 @@ def get_formatters(config: Dict[str, Any]) -> List[Callable[[Job], str]]:
         return x
 
     formatters = [
-        get_simple_formmatter('🪪 任務ID', 'JOBID'),
-        get_simple_formmatter('🛠️ 任務名稱', 'NAME'),
-        get_simple_formmatter('⚓ 分區名稱', 'PARTITION'),
-        get_simple_formmatter('🖥️ 節點數量', 'NODES'),
-        get_simple_formmatter('⏱ 開始時間', 'START_TIME'),
-        get_simple_formmatter('⏳ 運行時間', 'TIME'),
+        get_simple_formatter('🪪 任務ID', 'JOBID'),
+        get_simple_formatter('🛠️ 任務名稱', 'NAME'),
+        get_simple_formatter('⚓ 分區名稱', 'PARTITION'),
+        get_simple_formatter('🖥️ 節點數量', 'NODES'),
+        get_simple_formatter('⏱ 開始時間', 'START_TIME'),
+        get_simple_formatter('⏳ 運行時間', 'TIME'),
         project_formatter,
         user_formatter,
     ]
